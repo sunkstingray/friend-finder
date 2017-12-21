@@ -8,19 +8,13 @@ module.exports = function(app) {
     res.json(friendsData);
   });
 
-  // API POST Requests
-  // Below code handles when a user submits a form and thus submits data to the server.
-  // In each of the below cases, when a user submits form data (a JSON object)
-  // ...the JSON is pushed to the appropriate JavaScript array
-  // (ex. User fills out a reservation request... this data is then sent to the server...
-  // Then the server saves the data to the friendsData array)
-  // ---------------------------------------------------------------------------
-
   app.post("/api/friends", function(req, res) {
 
     console.log("1: " + req.body)
 
     res.json(calcDifference(req.body));
+
+    friendsData.push(req.body);
 
   });
 
@@ -79,17 +73,5 @@ function minimunDifference(differenceArray) {
       console.log("4: " + k);
       return k;
     }
-  }
-}
-
-// Function to calculate independent differences
-function individualDifferences(i) {
-  for (var j = 0; j < friendsArray[i].length; j++) {
-
-    console.log("A: " + friendsArray[i].scores[j]);
-
-    var difference = Math.abs(friendsArray[i].scores[j] - userInput.scores[j]);
-    individualDifferenceArray.push(difference);
-    console.log("Inner: " + individualDifferenceArray);
   }
 }
